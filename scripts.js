@@ -1,9 +1,19 @@
 const container = document.querySelector(".container");
 const btnSwitch = document.querySelector(".btn-switch");
+const theme = window.localStorage.getItem("theme");
 
-btnSwitch.addEventListener("click", toggleTheme);
+if (theme) {
+  container.classList.add("dark");
+  btnSwitch.classList.add("dark");
+}
 
-function toggleTheme() {
-  container.classList.toggle("dark-theme");
-  btnSwitch.classList.toggle("dark-btn");
+btnSwitch.addEventListener("click", addTheme);
+
+function addTheme() {
+  container.classList.toggle("dark");
+  if (container.classList.contains("dark")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.removeItem("theme");
+  }
 }
